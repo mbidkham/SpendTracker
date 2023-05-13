@@ -7,18 +7,54 @@ databaseChangeLog:
                     tableName: USER_INFO
                     columns:
                         - column:
-                              name: id
+                              name: ID
                               type: BIGINT
                               autoIncrement: true
                               constraints:
                                   primaryKey: true
                         - column:
-                              name: user_name
+                              name: USER_NAME
                               type: VARCHAR(255)
                         - column:
-                              name: password
+                              name: PASSWORD
                               type: VARCHAR(255)
                         - column:
-                              name: user_role
+                              name: USER_ROLE
                               type: VARCHAR(50)
+
+
+              - createTable:
+                    tableName: SPENDING_CATEGORY
+                    columns:
+                        - column:
+                              name: ID
+                              type: BIGINT
+                              autoIncrement: true
+                              constraints:
+                                  primaryKey: true
+                        - column:
+                              name: USER_ID
+                              type: BIGINT
+                        - column:
+                              name: NAME
+                              type: VARCHAR(255)
+                        - column:
+                              name: AMOUNT
+                              type: NUMERIC(19, 2)
+                        - column:
+                              name: LIMIT
+                              type: NUMERIC(19, 2)
+                    constraints:
+                        - primaryKey:
+                              columnNames:
+                                  - ID
+                        - uniqueConstraint:
+                              columnNames:
+                                  - USER_ID
+              - addForeignKeyConstraint:
+                    baseTableName: SPENDING_CATEGORY
+                    baseColumnNames: USER_ID
+                    referencedTableName: USER_INFO
+                    referencedColumnNames: ID
+                    constraintName: fk_category_user
 
