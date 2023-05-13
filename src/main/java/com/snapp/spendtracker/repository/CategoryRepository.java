@@ -11,5 +11,7 @@ import java.util.List;
 public interface CategoryRepository extends JpaRepository<SpendingCategory, Long>
 {
     List<SpendingCategory> findAllByNameAndUser(String name, UserInformation userInformation);
+    List<SpendingCategory> findAllByUser(UserInformation userInformation);
+
 
 }

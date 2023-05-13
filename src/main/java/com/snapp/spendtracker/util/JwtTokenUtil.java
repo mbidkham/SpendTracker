@@ -1,20 +1,27 @@
 package com.snapp.spendtracker.util;
 
+import com.snapp.spendtracker.model.UserInformation;
+import com.snapp.spendtracker.repository.UserInformationRepository;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
+
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import io.jsonwebtoken.Claims;
 
-
+@RequiredArgsConstructor
+@Component
 public class JwtTokenUtil {
 
-    private static final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    public static final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     private static final long EXPIRATION_TIME = 3600000; // 1 hour
+    private final UserInformationRepository userInformationRepository;
 
     public static String generateToken(String userDetails) {
         Map<String, Object> claims = new HashMap<>();
@@ -27,17 +34,33 @@ public class JwtTokenUtil {
             .compact();
     }
 
-    public static boolean validateToken(String token) {
+    public static boolean validateToken(String token, UserInformation userDetails) {
         try {
             Jwts.parserBuilder().setSigningKey(SECRET_KEY).build().parseClaimsJws(token);
-            return true;
+            var username = extractUsername(token);
+            return (username.equals(userDetails.getUserName()) && !isTokenExpired(token));
         } catch (Exception e) {
             return false;
         }
     }
 
-    public static String getUsernameFromToken(String token) {
-        Claims claims = Jwts.parserBuilder().setSigningKey(SECRET_KEY).build().parseClaimsJws(token).getBody();
+    public static String extractUsername(String jwtToken) {
+        Claims claims = Jwts
+            .parserBuilder()
+            .setSigningKey(JwtTokenUtil.SECRET_KEY)
+            .build()
+            .parseClaimsJws(jwtToken)
+            .getBody();
         return claims.getSubject();
+    }
+    public static boolean isTokenExpired(String token) {
+        Claims claims = Jwts.parserBuilder()
+            .setSigningKey(SECRET_KEY)
+            .build()
+            .parseClaimsJws(token)
+            .getBody();
+
+        Date expiration = claims.getExpiration();
+        return expiration.before(new Date());
     }
 }
