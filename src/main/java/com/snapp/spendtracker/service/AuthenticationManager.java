@@ -10,9 +10,9 @@ import org.springframework.stereotype.Component;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 @Component()
-@RequiredArgsConstructor
 public class AuthenticationManager {
 
     @Value(value = "${app.authentication.salt-before}")
@@ -22,6 +22,11 @@ public class AuthenticationManager {
 
     private final MessageDigest digest;
     private final UserInformationRepository userInformationRepository;
+
+    public AuthenticationManager(UserInformationRepository userInformationRepository) throws NoSuchAlgorithmException {
+        this.digest = MessageDigest.getInstance("SHA-256");
+        this.userInformationRepository = userInformationRepository;
+    }
 
     public String authenticate(LoginUserDto userDto) throws BadCredentialsException {
         var userInfo = userInformationRepository.findByUserName(userDto.userName()).orElseThrow();
