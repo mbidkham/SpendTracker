@@ -22,16 +22,3 @@ databaseChangeLog:
                               name: user_role
                               type: VARCHAR(50)
 
-    - changeSet:
-          id: 2
-          author: Mehraneh
-          changes:
-              - insert:
-                    tableName: USER_INFO
-                    columns:
-                        - column:
-                              name: user_name
-                              value: m.bidkham
-                        - column:
-                              name: password
-                              value: bidi98

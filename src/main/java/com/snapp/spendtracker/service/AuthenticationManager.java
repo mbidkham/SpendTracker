@@ -2,7 +2,6 @@ package com.snapp.spendtracker.service;
 
 import com.snapp.spendtracker.controller.dto.LoginUserDto;
 import com.snapp.spendtracker.repository.UserInformationRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.codec.Hex;
@@ -39,7 +38,7 @@ public class AuthenticationManager {
 
     }
 
-    String hashPassword(String password) {
+    public String hashPassword(String password) {
         String saltedPassword = saltBefore + password + saltAfter;
         byte[] hashedPassword = digest.digest(saltedPassword.getBytes(StandardCharsets.UTF_8));
         return new String(Hex.encode(hashedPassword));

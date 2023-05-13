@@ -12,5 +12,6 @@ public class UserInformation {
     private Long id;
     private String userName;
     private String password;
+    @Enumerated(EnumType.STRING)
     private UserRole userRole;
 }
