@@ -39,9 +39,6 @@ databaseChangeLog:
                               name: NAME
                               type: VARCHAR(255)
                         - column:
-                              name: AMOUNT
-                              type: NUMERIC(19, 2)
-                        - column:
                               name: LIMIT
                               type: NUMERIC(19, 2)
                     constraints:
@@ -57,4 +54,32 @@ databaseChangeLog:
                     referencedTableName: USER_INFO
                     referencedColumnNames: ID
                     constraintName: fk_category_user
+
+              - createTable:
+                    tableName: EXPENSES
+                    columns:
+                        - column:
+                              name: ID
+                              type: BIGINT
+                              autoIncrement: true
+                              constraints:
+                                  primaryKey: true
+                        - column:
+                                name: AMOUNT
+                                type: NUMERIC(19, 2)
+                        - column:
+                                name: CATEGORY_ID
+                                type: BIGINT
+                        - column:
+                                name: CREATED_AT
+                                type: TIMESTAMP
+                    constraints:
+                        -   foreignKey:
+                                name: FK_EXPENSES_CATEGORY_ID
+                                referencedTableName: SPENDING_CATEGORY
+                                referencedColumnNames: ID
+                                baseColumnNames: CATEGORY_ID
+                                onDelete: CASCADE
+
+
 

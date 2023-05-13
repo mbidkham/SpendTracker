@@ -23,9 +23,13 @@ public class InternalExceptionHandler extends ResponseEntityExceptionHandler {
             .body(ex.getMessage());
     }
     @ExceptionHandler(BadCredentialsException.class)
-    public ResponseEntity<String> handleDDTopUpRequestNotProcessableException(BadCredentialsException ex) {
+    public ResponseEntity<String> handleBadCredentialException(BadCredentialsException ex) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex.getMessage());
 
+    }
+    @ExceptionHandler(InvalidInputDataException.class)
+    public  ResponseEntity<String> handleUserInputException(BadCredentialsException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 
 
