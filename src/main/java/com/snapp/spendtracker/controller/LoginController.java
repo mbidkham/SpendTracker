@@ -4,11 +4,12 @@ import com.snapp.spendtracker.controller.dto.LoginUserDto;
 import com.snapp.spendtracker.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-@Controller
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
 @RequestMapping(value = "/auth")
 @RequiredArgsConstructor
 public class LoginController {

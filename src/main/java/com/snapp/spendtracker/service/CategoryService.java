@@ -11,6 +11,7 @@ import com.snapp.spendtracker.repository.CategoryRepository;
 import com.snapp.spendtracker.util.CategoryMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 
@@ -39,7 +40,8 @@ public class CategoryService {
     public Page<CategoryDto> retrieveCategories(SearchCategoryDto searchCategoryDto) {
         var user = userService.loadUserByUserName(requestInfo.getUserName());
         Page<SpendingCategory> paginatedUserCategories = categoryRepository
-            .findAllByNameContainingIgnoreCaseAndUser(searchCategoryDto.name(), user, searchCategoryDto.page(), searchCategoryDto.pageSize());
+            .findAllByNameContainingIgnoreCaseAndUser(searchCategoryDto.name(), user,
+                PageRequest.of(searchCategoryDto.page(), searchCategoryDto.pageSize()));
         if (!paginatedUserCategories.isEmpty()){
             return paginatedUserCategories
                 .map(categoryMapper::map);

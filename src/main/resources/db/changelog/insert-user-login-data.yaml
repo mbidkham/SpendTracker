@@ -14,4 +14,5 @@ databaseChangeLog:
                               value: m.bidkham
                         - column:
                               name: password
-                              value: 04ecf918dc4a5ce548c1127e84bd0d5e52b5e20e74bbb215825a87e52ad3f6d1
+                              value: 197b70b314eeefb337479b5ffd69ea68c12472e5375bf0ac8d5c6863296583ec
+#                              enter "password" to login

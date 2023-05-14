@@ -5,14 +5,13 @@ import com.snapp.spendtracker.controller.dto.ExpenseDto;
 import com.snapp.spendtracker.controller.dto.ExpenseReportDto;
 import com.snapp.spendtracker.service.ExpensesService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequestMapping("/expenses")
 @RequiredArgsConstructor
 public class ExpensesController {

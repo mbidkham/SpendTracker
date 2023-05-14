@@ -18,7 +18,7 @@ public class InternalExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<String> handleException(Exception ex) {
         log.error(ex.toString());
         return ResponseEntity.badRequest()
-            .body(ex.getMessage());
+            .body("Internal Server Error.");
     }
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<String> handleBadCredentialException(BadCredentialsException ex) {

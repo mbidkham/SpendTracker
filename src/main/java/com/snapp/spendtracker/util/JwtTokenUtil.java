@@ -19,7 +19,7 @@ import java.util.Map;
 @Component
 public class JwtTokenUtil {
 
-    public static final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    public static final Key SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS512);
     private static final long EXPIRATION_TIME = 3600000; // 1 hour
     private final UserInformationRepository userInformationRepository;
 
