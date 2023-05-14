@@ -74,7 +74,7 @@ databaseChangeLog:
                                 type: BIGINT
                         - column:
                                 name: CREATED_AT
-                                type: TIMESTAMP
+                                type: DATE
                     constraints:
                         -   foreignKey:
                                 name: FK_EXPENSES_CATEGORY_ID

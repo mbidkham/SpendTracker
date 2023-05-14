@@ -7,14 +7,18 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<SpendingCategory, Long>
 {
+    Optional<SpendingCategory> findByIdAndUser(Long id, UserInformation userInformation);
     List<SpendingCategory> findAllByNameAndUser(String name, UserInformation userInformation);
     List<SpendingCategory> findAllByUser(UserInformation userInformation);
     Page<SpendingCategory> findAllByNameContainingIgnoreCaseAndUser(String name, UserInformation userInformation,
                                                                     int page, int pageSize);
+
+
 
 
 

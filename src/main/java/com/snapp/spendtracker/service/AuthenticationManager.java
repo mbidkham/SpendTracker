@@ -1,6 +1,7 @@
 package com.snapp.spendtracker.service;
 
 import com.snapp.spendtracker.controller.dto.LoginUserDto;
+import com.snapp.spendtracker.exception.InvalidInputDataException;
 import com.snapp.spendtracker.repository.UserInformationRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -28,7 +29,8 @@ public class AuthenticationManager {
     }
 
     public String authenticate(LoginUserDto userDto) throws BadCredentialsException {
-        var userInfo = userInformationRepository.findByUserName(userDto.userName()).orElseThrow();
+        var userInfo = userInformationRepository.findByUserName(userDto.userName())
+            .orElseThrow(() -> new InvalidInputDataException("User not found."));
         if (userInfo.getPassword().equals(hashPassword(userDto.password()))){
             return userInfo.getUserName();
         }

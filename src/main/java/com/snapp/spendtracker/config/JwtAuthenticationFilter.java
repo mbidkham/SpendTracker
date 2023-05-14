@@ -1,5 +1,6 @@
 package com.snapp.spendtracker.config;
 
+import com.snapp.spendtracker.exception.InvalidInputDataException;
 import com.snapp.spendtracker.repository.UserInformationRepository;
 import com.snapp.spendtracker.util.JwtTokenUtil;
 import javax.servlet.FilterChain;
@@ -46,7 +47,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            var userDetails = userInformationRepository.findByUserName(username).orElseThrow();
+            var userDetails = userInformationRepository.findByUserName(username)
+                .orElseThrow(() -> new InvalidInputDataException("User not found."));
 
             if (JwtTokenUtil.validateToken(jwtToken, userDetails)) {
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
