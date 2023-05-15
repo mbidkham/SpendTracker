@@ -2,8 +2,9 @@ package com.snapp.spendtracker.controller.dto;
 
 
 import com.snapp.spendtracker.exception.InvalidInputDataException;
+import lombok.Builder;
 
-
+@Builder
 public record LoginUserDto (String userName, String password){
 
     public LoginUserDto {

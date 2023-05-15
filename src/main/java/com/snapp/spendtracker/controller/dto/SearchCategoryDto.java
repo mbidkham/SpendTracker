@@ -1,8 +1,15 @@
 package com.snapp.spendtracker.controller.dto;
 
 
-import javax.validation.constraints.NotNull;
+import com.snapp.spendtracker.exception.InvalidInputDataException;
+import lombok.Builder;
 
-public record SearchCategoryDto(@NotNull(message = "Please Enter category name.") String name, int page, int pageSize) {
+@Builder
+public record SearchCategoryDto(String name, int page, int pageSize) {
 
+    public SearchCategoryDto {
+        if (name == null || name.isEmpty()) {
+            throw new InvalidInputDataException("Please Enter category name.");
+        }
+    }
 }

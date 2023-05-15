@@ -17,9 +17,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
     scheme = "bearer"
 )
 @OpenAPIDefinition(
-    servers = {
-        @Server(url = "http://localhost:8080", description = "Local Server URL"),
-    },
     security = @SecurityRequirement(name = "bearerAuth")
 )
 public class SpendTrackerApplication {

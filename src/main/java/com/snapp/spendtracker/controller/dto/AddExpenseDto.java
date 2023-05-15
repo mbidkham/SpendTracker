@@ -1,9 +1,10 @@
 package com.snapp.spendtracker.controller.dto;
 
 import com.snapp.spendtracker.exception.InvalidInputDataException;
+import lombok.Builder;
 
 import java.math.BigDecimal;
-
+@Builder
 public record AddExpenseDto(Long id, BigDecimal amount) {
 
     public AddExpenseDto {

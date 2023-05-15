@@ -9,7 +9,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 
 @RequestMapping(value = "/category")
 @RestController
@@ -23,7 +22,7 @@ public class CategoryController {
     }
 
     @PostMapping("/search")
-    public ResponseEntity<Page<CategoryDto>> search(@RequestBody @Valid SearchCategoryDto searchCategoryDto){
+    public ResponseEntity<Page<CategoryDto>> search(@RequestBody SearchCategoryDto searchCategoryDto){
         return ResponseEntity.ok(categoryService.retrieveCategories(searchCategoryDto));
     }
 }
