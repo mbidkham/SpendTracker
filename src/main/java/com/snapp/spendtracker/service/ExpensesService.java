@@ -12,6 +12,7 @@ import com.snapp.spendtracker.repository.ExpenseRepository;
 import com.snapp.spendtracker.util.DateUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -38,6 +39,7 @@ public class ExpensesService {
         return checkExpenseLimit(category, addExpenseDto.amount());
     }
 
+    @Transactional(readOnly = true)
     public ExpenseDto expenseReporter(ExpenseReportDto reportDto) {
         List<Object[]> reportResult = expenseRepository.sumExpensesAmountReporter(reportDto.from(), reportDto.to(),
             reportDto.categoryId(), requestInfo.getUserName());

@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -37,6 +37,7 @@ public class CategoryService {
         return "Added Successfully.";
     }
 
+    @Transactional(readOnly = true)
     public Page<CategoryDto> retrieveCategories(SearchCategoryDto searchCategoryDto) {
         var user = userService.loadUserByUserName(requestInfo.getUserName());
         Page<SpendingCategory> paginatedUserCategories = categoryRepository
