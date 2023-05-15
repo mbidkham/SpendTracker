@@ -23,6 +23,6 @@ public class SpendingCategory  {
     private UserInformation user;
 
     private String name;
-    private BigDecimal limit;
+    private BigDecimal limitAmount;
 
 }

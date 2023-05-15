@@ -30,7 +30,7 @@ public class CategoryService {
         var category = SpendingCategory
             .builder()
             .user(user)
-            .limit(categoryDto.limit())
+            .limitAmount(categoryDto.limit())
             .name(categoryDto.name())
             .build();
         categoryRepository.save(category);
@@ -49,7 +49,7 @@ public class CategoryService {
         return Page.empty();
     }
     public void checkDuplicateCategories(String categoryName, UserInformation user){
-        if(!categoryRepository.findAllByNameAndUser(categoryName, user).isEmpty()){
+        if(!categoryRepository.findAllByNameAndUser_Id(categoryName, user.getId()).isEmpty()){
             throw new InvalidInputDataException("This category is exist for you.Please Enter a new!");
         }
     }

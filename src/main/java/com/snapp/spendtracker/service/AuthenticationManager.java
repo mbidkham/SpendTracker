@@ -35,7 +35,7 @@ public class AuthenticationManager {
             return userInfo.getUserName();
         }
         else {
-            throw new BadCredentialsException("Password is not valid.");
+            throw new BadCredentialsException("Credential Failed.Input Valid data.");
         }
 
     }

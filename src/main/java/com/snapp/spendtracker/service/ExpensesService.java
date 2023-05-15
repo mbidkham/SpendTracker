@@ -41,6 +41,9 @@ public class ExpensesService {
     public ExpenseDto expenseReporter(ExpenseReportDto reportDto) {
         List<Object[]> reportResult = expenseRepository.sumExpensesAmountReporter(reportDto.from(), reportDto.to(),
             reportDto.categoryId(), requestInfo.getUserName());
+        if(reportResult.isEmpty()){
+            return ExpenseDto.builder().build();
+        }
         var amount = (BigDecimal) reportResult.get(0)[0];
         var name = (String) reportResult.get(0)[1];
         return ExpenseDto.builder()
@@ -52,7 +55,7 @@ public class ExpensesService {
     private String checkExpenseLimit(SpendingCategory category, BigDecimal newAmount) {
         var monthlyCategoryExpenses =
             expenseRepository.sumExpensesAmount(DateUtils.getFirstDayOfCurrentMonth(), LocalDate.now(), category);
-        if (monthlyCategoryExpenses.add(newAmount).compareTo(category.getLimit()) > 0) {
+        if (monthlyCategoryExpenses.add(newAmount).compareTo(category.getLimitAmount()) > 0) {
             return "NOTICE!!You are spending too money on buying " + category.getName() + " in this month!!";
         }
         return "WELL DONE!";

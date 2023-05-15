@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RequestMapping(value = "/category")
 @RestController
 @RequiredArgsConstructor
@@ -20,8 +22,8 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.addNewCategory(categoryDto));
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<Page<CategoryDto>> search(@RequestBody SearchCategoryDto searchCategoryDto){
+    @PostMapping("/search")
+    public ResponseEntity<Page<CategoryDto>> search(@RequestBody @Valid SearchCategoryDto searchCategoryDto){
         return ResponseEntity.ok(categoryService.retrieveCategories(searchCategoryDto));
     }
 }
