@@ -162,7 +162,6 @@
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <annotationProcessorPaths>
-                        <release>17</release>
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
