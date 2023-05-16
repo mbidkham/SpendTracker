@@ -25,4 +25,10 @@ public class CategoryController {
     public ResponseEntity<Page<CategoryDto>> search(@RequestBody SearchCategoryDto searchCategoryDto){
         return ResponseEntity.ok(categoryService.retrieveCategories(searchCategoryDto));
     }
+
+    @GetMapping("/{page}/{pageSize}")
+    public ResponseEntity<Page<CategoryDto>> getAllUserCategories(@PathVariable("page") int page,
+                                                                  @PathVariable("pageSize") int pageSize){
+        return ResponseEntity.ok(categoryService.getAllUserCategories(page, pageSize));
+    }
 }

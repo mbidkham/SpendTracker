@@ -18,8 +18,7 @@ public interface CategoryRepository extends JpaRepository<SpendingCategory, Long
     Page<SpendingCategory> findAllByNameContainingIgnoreCaseAndUser(String name, UserInformation userInformation,
                                                                     Pageable pageable);
 
-
-
+    Page<SpendingCategory> findAllByUser_Id(Long userId, Pageable pageable);
 
 
 }

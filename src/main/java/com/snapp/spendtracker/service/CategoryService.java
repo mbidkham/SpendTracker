@@ -43,14 +43,27 @@ public class CategoryService {
         Page<SpendingCategory> paginatedUserCategories = categoryRepository
             .findAllByNameContainingIgnoreCaseAndUser(searchCategoryDto.name(), user,
                 PageRequest.of(searchCategoryDto.page(), searchCategoryDto.pageSize()));
-        if (!paginatedUserCategories.isEmpty()){
+        if (!paginatedUserCategories.isEmpty()) {
             return paginatedUserCategories
                 .map(categoryMapper::map);
         }
         return Page.empty();
     }
-    public void checkDuplicateCategories(String categoryName, UserInformation user){
-        if(!categoryRepository.findAllByNameAndUser_Id(categoryName, user.getId()).isEmpty()){
+
+    @Transactional(readOnly = true)
+    public Page<CategoryDto> getAllUserCategories(int page, int pageSize) {
+        var user = userService.loadUserByUserName(requestInfo.getUserName());
+        Page<SpendingCategory> paginatedUserCategories = categoryRepository
+            .findAllByUser_Id(user.getId(), PageRequest.of(page, pageSize));
+        if (!paginatedUserCategories.isEmpty()) {
+            return paginatedUserCategories
+                .map(categoryMapper::map);
+        }
+        return Page.empty();
+    }
+
+    public void checkDuplicateCategories(String categoryName, UserInformation user) {
+        if (!categoryRepository.findAllByNameAndUser_Id(categoryName, user.getId()).isEmpty()) {
             throw new InvalidInputDataException("This category is exist for you.Please Enter a new!");
         }
     }
