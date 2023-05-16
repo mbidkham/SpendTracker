@@ -1,7 +1,7 @@
 package com.snapp.spendtracker.repository;
 
-import com.snapp.spendtracker.model.SpendingCategory;
-import com.snapp.spendtracker.model.UserInformation;
+import com.snapp.spendtracker.infrastructure.domain.SpendingCategoryEntity;
+import com.snapp.spendtracker.infrastructure.domain.UserInformationEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,12 +11,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface CategoryRepository extends JpaRepository<SpendingCategory, Long>
+public interface CategoryRepository extends JpaRepository<SpendingCategoryEntity, Long>
 {
-    Optional<SpendingCategory> findByIdAndUser(Long id, UserInformation userInformation);
-    List<SpendingCategory> findAllByNameAndUser_Id(String name, Long userId);
-    Page<SpendingCategory> findAllByNameContainingIgnoreCaseAndUser(String name, UserInformation userInformation,
-                                                                    Pageable pageable);
+    Optional<SpendingCategoryEntity> findByIdAndUser(Long id, UserInformationEntity userInformation);
+    List<SpendingCategoryEntity> findAllByNameAndUser_Id(String name, Long userId);
+    Page<SpendingCategoryEntity> findAllByNameContainingIgnoreCaseAndUser(String name, UserInformationEntity userInformation,
+                                                                          Pageable pageable);
 
 
 

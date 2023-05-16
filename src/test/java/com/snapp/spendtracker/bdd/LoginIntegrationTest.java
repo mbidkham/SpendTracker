@@ -2,7 +2,7 @@ package com.snapp.spendtracker.bdd;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.snapp.spendtracker.config.JwtAuthenticationFilter;
-import com.snapp.spendtracker.controller.dto.LoginUserDto;
+import com.snapp.spendtracker.infrastructure.api.dto.LoginUserDto;
 import com.snapp.spendtracker.repository.UserInformationRepository;
 import com.snapp.spendtracker.service.AuthenticationManager;
 import com.snapp.spendtracker.util.JwtTokenUtil;

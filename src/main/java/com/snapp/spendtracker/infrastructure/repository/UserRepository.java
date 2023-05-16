@@ -1,6 +1,7 @@
-package com.snapp.spendtracker.service;
+package com.snapp.spendtracker.infrastructure.repository;
 
-import com.snapp.spendtracker.model.UserInformation;
+import com.snapp.spendtracker.core.domain.UserInfo;
+import com.snapp.spendtracker.infrastructure.domain.UserInformationEntity;
 import com.snapp.spendtracker.repository.UserInformationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -8,10 +9,10 @@ import com.snapp.spendtracker.exception.InvalidInputDataException;
 
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class UserRepository implements UserInfo {
     private final UserInformationRepository userInformationRepository;
 
-    public UserInformation loadUserByUserName(String userName){
+    public UserInformationEntity loadUserByUserName(String userName){
         return userInformationRepository.findByUserName(userName)
             .orElseThrow(() -> new InvalidInputDataException("User not found."));
     }

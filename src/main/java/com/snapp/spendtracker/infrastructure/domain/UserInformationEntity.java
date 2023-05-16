@@ -1,4 +1,4 @@
-package com.snapp.spendtracker.model;
+package com.snapp.spendtracker.infrastructure.domain;
 
 import lombok.Data;
 
@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @Table(name = "USER_INFO")
-public class UserInformation {
+public class UserInformationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;

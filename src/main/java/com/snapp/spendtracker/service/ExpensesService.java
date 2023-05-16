@@ -1,12 +1,13 @@
 package com.snapp.spendtracker.service;
 
 import com.snapp.spendtracker.config.RequestInfo;
-import com.snapp.spendtracker.controller.dto.AddExpenseDto;
-import com.snapp.spendtracker.controller.dto.ExpenseDto;
-import com.snapp.spendtracker.controller.dto.ExpenseReportDto;
+import com.snapp.spendtracker.infrastructure.api.dto.AddExpenseDto;
+import com.snapp.spendtracker.infrastructure.api.dto.ExpenseDto;
+import com.snapp.spendtracker.infrastructure.api.dto.ExpenseReportDto;
 import com.snapp.spendtracker.exception.InvalidInputDataException;
-import com.snapp.spendtracker.model.ExpenseData;
-import com.snapp.spendtracker.model.SpendingCategory;
+import com.snapp.spendtracker.infrastructure.domain.SpendingCategoryEntity;
+import com.snapp.spendtracker.infrastructure.repository.UserRepository;
+import com.snapp.spendtracker.infrastructure.domain.ExpenseEntity;
 import com.snapp.spendtracker.repository.CategoryRepository;
 import com.snapp.spendtracker.repository.ExpenseRepository;
 import com.snapp.spendtracker.util.DateUtils;
@@ -24,13 +25,13 @@ public class ExpensesService {
     private final CategoryRepository categoryRepository;
     private final ExpenseRepository expenseRepository;
     private final RequestInfo requestInfo;
-    private final UserService userService;
+    private final UserRepository userService;
 
     public String addExpense(AddExpenseDto addExpenseDto) {
         var user = userService.loadUserByUserName(requestInfo.getUserName());
         var category = categoryRepository.findByIdAndUser(addExpenseDto.id(), user)
             .orElseThrow(() -> new InvalidInputDataException("This category is not exist for you."));
-        var expense = ExpenseData.builder()
+        var expense = ExpenseEntity.builder()
             .amount(addExpenseDto.amount())
             .category(category)
             .createdAt(LocalDate.now())
@@ -54,7 +55,7 @@ public class ExpensesService {
             .build();
     }
 
-    private String checkExpenseLimit(SpendingCategory category, BigDecimal newAmount) {
+    private String checkExpenseLimit(SpendingCategoryEntity category, BigDecimal newAmount) {
         var monthlyCategoryExpenses =
             expenseRepository.sumExpensesAmount(DateUtils.getFirstDayOfCurrentMonth(), LocalDate.now(), category);
         if (monthlyCategoryExpenses.add(newAmount).compareTo(category.getLimitAmount()) > 0) {

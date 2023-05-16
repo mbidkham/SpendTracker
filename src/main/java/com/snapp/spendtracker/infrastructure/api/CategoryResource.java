@@ -1,8 +1,8 @@
-package com.snapp.spendtracker.controller;
+package com.snapp.spendtracker.infrastructure.api;
 
-import com.snapp.spendtracker.controller.dto.AddCategoryDto;
-import com.snapp.spendtracker.controller.dto.CategoryDto;
-import com.snapp.spendtracker.controller.dto.SearchCategoryDto;
+import com.snapp.spendtracker.infrastructure.api.dto.AddCategoryDto;
+import com.snapp.spendtracker.infrastructure.api.dto.CategoryDto;
+import com.snapp.spendtracker.infrastructure.api.dto.SearchCategoryDto;
 import com.snapp.spendtracker.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/category")
 @RestController
 @RequiredArgsConstructor
-public class CategoryController {
+public class CategoryResource {
 
     private final CategoryService categoryService;
     @PostMapping(value = "/add")

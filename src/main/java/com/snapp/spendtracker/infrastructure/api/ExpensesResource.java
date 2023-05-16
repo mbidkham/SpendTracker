@@ -1,8 +1,8 @@
-package com.snapp.spendtracker.controller;
+package com.snapp.spendtracker.infrastructure.api;
 
-import com.snapp.spendtracker.controller.dto.AddExpenseDto;
-import com.snapp.spendtracker.controller.dto.ExpenseDto;
-import com.snapp.spendtracker.controller.dto.ExpenseReportDto;
+import com.snapp.spendtracker.infrastructure.api.dto.AddExpenseDto;
+import com.snapp.spendtracker.infrastructure.api.dto.ExpenseDto;
+import com.snapp.spendtracker.infrastructure.api.dto.ExpenseReportDto;
 import com.snapp.spendtracker.service.ExpensesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/expenses")
 @RequiredArgsConstructor
-public class ExpensesController {
+public class ExpensesResource {
     private final ExpensesService expensesService;
     @PostMapping(value = "/add")
     public ResponseEntity<String> addExpenses(@RequestBody AddExpenseDto addExpensesDto){

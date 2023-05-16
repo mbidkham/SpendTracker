@@ -1,4 +1,4 @@
-package com.snapp.spendtracker.controller.dto;
+package com.snapp.spendtracker.infrastructure.api.dto;
 
 import com.snapp.spendtracker.exception.InvalidInputDataException;
 

@@ -1,4 +1,4 @@
-package com.snapp.spendtracker.model;
+package com.snapp.spendtracker.infrastructure.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,14 +13,14 @@ import java.math.BigDecimal;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class SpendingCategory  {
+public class SpendingCategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "USER_ID", referencedColumnName = "id")
-    private UserInformation user;
+    private UserInformationEntity user;
 
     private String name;
     private BigDecimal limitAmount;

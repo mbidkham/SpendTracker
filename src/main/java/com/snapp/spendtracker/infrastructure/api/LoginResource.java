@@ -1,6 +1,6 @@
-package com.snapp.spendtracker.controller;
+package com.snapp.spendtracker.infrastructure.api;
 
-import com.snapp.spendtracker.controller.dto.LoginUserDto;
+import com.snapp.spendtracker.infrastructure.api.dto.LoginUserDto;
 import com.snapp.spendtracker.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/auth")
 @RequiredArgsConstructor
-public class LoginController {
+public class LoginResource {
 
     private final LoginService loginService;
 

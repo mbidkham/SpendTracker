@@ -1,4 +1,4 @@
-package com.snapp.spendtracker.model;
+package com.snapp.spendtracker.infrastructure.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Data
@@ -16,13 +15,13 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ExpenseData {
+public class ExpenseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @OneToOne(optional = false)
-    private SpendingCategory category;
+    private SpendingCategoryEntity category;
 
     private BigDecimal amount;
     private LocalDate createdAt;

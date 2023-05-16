@@ -1,7 +1,7 @@
 package com.snapp.spendtracker.bdd.util;
 
-import com.snapp.spendtracker.model.ExpenseData;
-import com.snapp.spendtracker.model.SpendingCategory;
+import com.snapp.spendtracker.infrastructure.domain.ExpenseEntity;
+import com.snapp.spendtracker.infrastructure.domain.SpendingCategoryEntity;
 import com.snapp.spendtracker.repository.CategoryRepository;
 import com.snapp.spendtracker.repository.ExpenseRepository;
 import com.snapp.spendtracker.repository.UserInformationRepository;
@@ -19,17 +19,17 @@ public class InitialDataUtil {
     private final CategoryRepository categoryRepository;
     private final UserInformationRepository userInformationRepository;
     @Transactional
-    public SpendingCategory saveCategory(String categoryName, BigDecimal limit){
+    public SpendingCategoryEntity saveCategory(String categoryName, BigDecimal limit){
         var user = userInformationRepository.findByUserName("m.bidkham").get();
-        return categoryRepository.save(SpendingCategory.builder().id(1L)
+        return categoryRepository.save(SpendingCategoryEntity.builder().id(1L)
             .name(categoryName)
             .user(user)
             .limitAmount(limit)
             .build());
 
     }
-    public void saveNewExpense(SpendingCategory spendingCategory, BigDecimal amount) {
-        expenseRepository.save(ExpenseData.builder()
+    public void saveNewExpense(SpendingCategoryEntity spendingCategory, BigDecimal amount) {
+        expenseRepository.save(ExpenseEntity.builder()
             .createdAt(LocalDate.now())
             .amount(BigDecimal.valueOf(300_000))
             .category(spendingCategory)

@@ -21,6 +21,7 @@
         <spring-doc.version>1.6.5</spring-doc.version>
         <cucumber.version>7.10.1</cucumber.version>
         <json-webtoken.verison>0.11.2</json-webtoken.verison>
+        <pipelinr.version>0.7</pipelinr.version>
 
     </properties>
 	<dependencies>
@@ -148,7 +149,11 @@
             <version>${cucumber.version}</version>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>net.sizovs</groupId>
+            <artifactId>pipelinr</artifactId>
+            <version>${pipelinr.version}</version>
+        </dependency>
     </dependencies>
 
 	<build>

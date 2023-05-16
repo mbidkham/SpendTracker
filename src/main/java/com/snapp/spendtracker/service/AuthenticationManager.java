@@ -1,6 +1,6 @@
 package com.snapp.spendtracker.service;
 
-import com.snapp.spendtracker.controller.dto.LoginUserDto;
+import com.snapp.spendtracker.infrastructure.api.dto.LoginUserDto;
 import com.snapp.spendtracker.exception.InvalidInputDataException;
 import com.snapp.spendtracker.repository.UserInformationRepository;
 import org.springframework.beans.factory.annotation.Value;

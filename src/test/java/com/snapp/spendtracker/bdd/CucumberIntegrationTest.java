@@ -2,8 +2,6 @@ package com.snapp.spendtracker.bdd;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.snapp.spendtracker.config.JwtAuthenticationFilter;
-import com.snapp.spendtracker.controller.dto.LoginUserDto;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import io.cucumber.spring.CucumberContextConfiguration;

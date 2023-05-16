@@ -1,13 +1,10 @@
 package com.snapp.spendtracker.util;
 
-import com.snapp.spendtracker.model.UserInformation;
-import com.snapp.spendtracker.repository.UserInformationRepository;
+import com.snapp.spendtracker.infrastructure.domain.UserInformationEntity;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 
 import java.security.Key;
 import java.util.Date;
@@ -31,7 +28,7 @@ public class JwtTokenUtil {
             .compact();
     }
 
-    public static boolean validateToken(String token, UserInformation userDetails) {
+    public static boolean validateToken(String token, UserInformationEntity userDetails) {
         try {
             Jwts.parserBuilder().setSigningKey(SECRET_KEY).build().parseClaimsJws(token);
             var username = extractUsername(token);
