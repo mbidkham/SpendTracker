@@ -1,3 +1,13 @@
+Why this branch?
+===========
+First I needed to implement the code efficient and on time to meet the deadline, 
+So I decided to develop it as simple as possible. But after completing test cases and
+testing my scenarios to be curtained about functionality, I made this branch to change 
+the architecture of my app into DDD. I think it takes time to develop it and DDD design might be
+a group decision containing a process.So this branch is not ready and complete :)
+It is just some load thinking.
+
+
 What is SpendTracker? 
  ===========
 This is a financial management application.You can add your categories based on your daily expenses. 
