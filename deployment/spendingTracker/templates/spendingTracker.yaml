@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spendingTracker
+  labels:
+    app: spendingTracker
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: spendingTracker
+  template:
+    metadata:
+      labels:
+        app: spendingTracker
+      annotations:
+        git_sha: {{ .Values.GIT_SHA}}
+    spec:
+      containers:
+      - name: spendingTracker
+        image: {{ .Values.CONTAINER_REPO }}
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "500m"
+          limits:
+            memory: "2048Mi"
+            cpu: "2048m"
+      tolerations:
+      - key: NotOKEPods
+        operator: "Equal"
+        value: "true"
+        effect: NoSchedule
+      nodeSelector:
+        pool: np2
+      imagePullSecrets:
+      - name: ocirsecret
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: spendingTracker-service
+spec:
+  selector:
+    app: spendingTracker
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
