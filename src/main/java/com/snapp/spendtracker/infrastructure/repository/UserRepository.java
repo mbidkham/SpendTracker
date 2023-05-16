@@ -2,7 +2,6 @@ package com.snapp.spendtracker.infrastructure.repository;
 
 import com.snapp.spendtracker.core.domain.UserInfo;
 import com.snapp.spendtracker.infrastructure.domain.UserInformationEntity;
-import com.snapp.spendtracker.repository.UserInformationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.snapp.spendtracker.exception.InvalidInputDataException;

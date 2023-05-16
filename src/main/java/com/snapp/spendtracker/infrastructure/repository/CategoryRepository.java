@@ -1,4 +1,4 @@
-package com.snapp.spendtracker.repository;
+package com.snapp.spendtracker.infrastructure.repository;
 
 import com.snapp.spendtracker.infrastructure.domain.SpendingCategoryEntity;
 import com.snapp.spendtracker.infrastructure.domain.UserInformationEntity;

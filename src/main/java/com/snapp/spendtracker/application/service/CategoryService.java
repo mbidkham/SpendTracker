@@ -8,7 +8,7 @@ import com.snapp.spendtracker.exception.InvalidInputDataException;
 import com.snapp.spendtracker.infrastructure.domain.SpendingCategoryEntity;
 import com.snapp.spendtracker.infrastructure.repository.UserRepository;
 import com.snapp.spendtracker.infrastructure.domain.UserInformationEntity;
-import com.snapp.spendtracker.repository.CategoryRepository;
+import com.snapp.spendtracker.infrastructure.repository.CategoryRepository;
 import com.snapp.spendtracker.util.CategoryMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

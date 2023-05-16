@@ -1,4 +1,4 @@
-package com.snapp.spendtracker.repository;
+package com.snapp.spendtracker.infrastructure.repository;
 
 import com.snapp.spendtracker.infrastructure.domain.UserInformationEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

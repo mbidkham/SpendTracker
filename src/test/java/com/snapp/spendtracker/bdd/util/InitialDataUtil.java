@@ -2,9 +2,9 @@ package com.snapp.spendtracker.bdd.util;
 
 import com.snapp.spendtracker.infrastructure.domain.ExpenseEntity;
 import com.snapp.spendtracker.infrastructure.domain.SpendingCategoryEntity;
-import com.snapp.spendtracker.repository.CategoryRepository;
-import com.snapp.spendtracker.repository.ExpenseRepository;
-import com.snapp.spendtracker.repository.UserInformationRepository;
+import com.snapp.spendtracker.infrastructure.repository.CategoryRepository;
+import com.snapp.spendtracker.infrastructure.repository.ExpenseRepository;
+import com.snapp.spendtracker.infrastructure.repository.UserInformationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

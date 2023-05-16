@@ -1,7 +1,7 @@
 package com.snapp.spendtracker.config;
 
 import com.snapp.spendtracker.exception.InvalidInputDataException;
-import com.snapp.spendtracker.repository.UserInformationRepository;
+import com.snapp.spendtracker.infrastructure.repository.UserInformationRepository;
 import com.snapp.spendtracker.util.JwtTokenUtil;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;

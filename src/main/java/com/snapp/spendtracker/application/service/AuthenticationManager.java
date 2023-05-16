@@ -2,7 +2,7 @@ package com.snapp.spendtracker.application.service;
 
 import com.snapp.spendtracker.infrastructure.api.dto.LoginUserDto;
 import com.snapp.spendtracker.exception.InvalidInputDataException;
-import com.snapp.spendtracker.repository.UserInformationRepository;
+import com.snapp.spendtracker.infrastructure.repository.UserInformationRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.codec.Hex;
