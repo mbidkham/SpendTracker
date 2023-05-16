@@ -1,4 +1,4 @@
-package com.snapp.spendtracker.service;
+package com.snapp.spendtracker.application.service;
 
 import com.snapp.spendtracker.config.RequestInfo;
 import com.snapp.spendtracker.infrastructure.api.dto.AddExpenseDto;

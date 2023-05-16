@@ -5,9 +5,9 @@ import com.snapp.spendtracker.exception.InvalidInputDataException;
 import lombok.Builder;
 
 @Builder
-public record SearchCategoryDto(String name, int page, int pageSize) {
+public record SearchCategoryQuery(String name, int page, int pageSize) {
 
-    public SearchCategoryDto {
+    public SearchCategoryQuery {
         if (name == null || name.isEmpty()) {
             throw new InvalidInputDataException("Please Enter category name.");
         }

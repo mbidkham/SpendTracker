@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.snapp.spendtracker.config.JwtAuthenticationFilter;
 import com.snapp.spendtracker.infrastructure.api.dto.LoginUserDto;
 import com.snapp.spendtracker.repository.UserInformationRepository;
-import com.snapp.spendtracker.service.AuthenticationManager;
+import com.snapp.spendtracker.application.service.AuthenticationManager;
 import com.snapp.spendtracker.util.JwtTokenUtil;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;

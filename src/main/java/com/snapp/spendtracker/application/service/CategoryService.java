@@ -1,9 +1,9 @@
-package com.snapp.spendtracker.service;
+package com.snapp.spendtracker.application.service;
 
+import com.snapp.spendtracker.application.service.command.AddCategoryCommand;
+import com.snapp.spendtracker.application.service.query.SearchCategoryQuery;
 import com.snapp.spendtracker.config.RequestInfo;
-import com.snapp.spendtracker.infrastructure.api.dto.AddCategoryDto;
 import com.snapp.spendtracker.infrastructure.api.dto.CategoryDto;
-import com.snapp.spendtracker.infrastructure.api.dto.SearchCategoryDto;
 import com.snapp.spendtracker.exception.InvalidInputDataException;
 import com.snapp.spendtracker.infrastructure.domain.SpendingCategoryEntity;
 import com.snapp.spendtracker.infrastructure.repository.UserRepository;
@@ -25,7 +25,7 @@ public class CategoryService {
     private final RequestInfo requestInfo;
     private final UserRepository userService;
 
-    public String addNewCategory(AddCategoryDto categoryDto) {
+    public String addNewCategory(AddCategoryCommand categoryDto) {
         var user = userService.loadUserByUserName(requestInfo.getUserName());
         checkDuplicateCategories(categoryDto.name(), user);
         var category = SpendingCategoryEntity
@@ -39,11 +39,11 @@ public class CategoryService {
     }
 
     @Transactional(readOnly = true)
-    public Page<CategoryDto> retrieveCategories(SearchCategoryDto searchCategoryDto) {
+    public Page<CategoryDto> retrieveCategories(SearchCategoryQuery searchCategoryQuery) {
         var user = userService.loadUserByUserName(requestInfo.getUserName());
         Page<SpendingCategoryEntity> paginatedUserCategories = categoryRepository
-            .findAllByNameContainingIgnoreCaseAndUser(searchCategoryDto.name(), user,
-                PageRequest.of(searchCategoryDto.page(), searchCategoryDto.pageSize()));
+            .findAllByNameContainingIgnoreCaseAndUser(searchCategoryQuery.name(), user,
+                PageRequest.of(searchCategoryQuery.page(), searchCategoryQuery.pageSize()));
         if (!paginatedUserCategories.isEmpty()){
             return paginatedUserCategories
                 .map(categoryMapper::map);
