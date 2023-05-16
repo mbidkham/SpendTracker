@@ -23,6 +23,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
+    - name: Test
       run: mvn clean compile test     
   
