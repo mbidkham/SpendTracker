@@ -1,4 +1,4 @@
-package com.snapp.spendtracker.infrastructure.api.dto;
+package com.snapp.spendtracker.application.service.command;
 
 
 import com.snapp.spendtracker.exception.InvalidInputDataException;
@@ -7,8 +7,8 @@ import lombok.Builder;
 import java.math.BigDecimal;
 
 @Builder
-public record AddCategoryDto(String name, BigDecimal limit) {
-    public AddCategoryDto {
+public record AddCategoryCommand(String name, BigDecimal limit) {
+    public AddCategoryCommand {
         if (name == null || name.isEmpty()) {
             throw new InvalidInputDataException("Please enter category name.");
         }
