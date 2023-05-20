@@ -9,6 +9,7 @@ In addition to this, you can get a report of total expenses of a category during
 Quick start
 ===========
 Please read [Project Description Reference](https://docs.google.com/document/d/1FLZiyAYD3nlbxGtNGi84zGMSBr3-oCSXcwPR-TeFyKU/edit#heading=h.hm40tzuc74uo) Personal Finance Side Projects part number 11.
+Note: When the application comes up, a user by credential will be created by liquibase. You can use the username and password which is exist in Database to login.
 
 A common workflow includes:
 
